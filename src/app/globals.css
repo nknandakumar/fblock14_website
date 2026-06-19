@@ -6,7 +6,7 @@
   --font-signature: var(--font-great-vibes), cursive;
   
   --color-accent: #FFCC01;
-  --color-bg-dark: #050505;
+  --color-bg-dark: #0A0A0A;
   --color-card-dark: #121212;
   --color-card-border: #1a1a1a;
   
@@ -30,7 +30,7 @@
 }
 
 :root {
-  --background: #050505;
+  --background:  #0A0A0A;
   --foreground: #ffffff;
   scrollbar-gutter: stable;
 }

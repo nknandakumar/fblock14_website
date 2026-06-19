@@ -86,7 +86,7 @@ export default function Stats() {
     <section className="py-20 bg-bg-dark border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-accent">
+          <span className="text-xs font-medium px-4 py-2 border border-white/10 rounded-full mb-2 uppercase tracking-[0.25em] ">
             Authority in Numbers
           </span>
           <h2 className="text-3xl font-extrabold uppercase tracking-tight text-white mt-3">
