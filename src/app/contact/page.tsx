@@ -29,14 +29,14 @@ export default function Contact() {
       <Navbar />
       <main className="flex-grow pt-32 pb-12 bg-bg-dark text-white">
         {/* Contact Hero */}
-        <section className="py-16 text-center max-w-4xl mx-auto px-6">
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-accent">
+        <section className="py-16 max-w-4xl mx-auto px-6 flex flex-col items-center text-center gap-4">
+          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
             Get In Touch
           </span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white mt-3">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white">
             Let's Connect
           </h1>
-          <p className="text-white/50 text-sm font-brier mt-4 max-w-lg mx-auto">
+          <p className="text-white/50 text-sm font-brier max-w-lg mx-auto">
             Ready to secure campaign dates or discuss custom media packages? Choose your preferred channel to establish contact with Franklin.
           </p>
         </section>

@@ -83,16 +83,16 @@ export default function Stats() {
   ];
 
   return (
-    <section className="py-20 bg-bg-dark border-t border-white/5 relative">
+    <section id="metrics" className="py-20 bg-bg-dark border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-xl mx-auto mb-16">
-          <span className="text-xs font-medium px-4 py-2 border border-white/10 rounded-full mb-2 uppercase tracking-[0.25em] ">
+        <div className="flex flex-col items-center text-center mb-16 gap-4">
+          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
             Authority in Numbers
           </span>
-          <h2 className="text-3xl font-extrabold uppercase tracking-tight text-white mt-3">
+          <h2 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-white font-sans">
             Proven Market Traction
           </h2>
-          <p className="text-white/50 text-sm font-brier mt-4">
+          <p className="text-white/50 text-sm md:text-lg font-sans max-w-xl mx-auto">
             Franklin delivers attention and conversion metrics that help premium brands stand out.
           </p>
         </div>
@@ -124,7 +124,7 @@ export default function Stats() {
                 <div className="text-4xl font-black tracking-tight text-white">
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-[10px] text-white/40 font-brier">
+                <p className="text-[10px] text-white/40 font-sans mt-2">
                   {stat.description}
                 </p>
               </div>

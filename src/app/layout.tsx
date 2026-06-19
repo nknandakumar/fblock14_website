@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Mona_Sans, Great_Vibes } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 
 const monaSans = Mona_Sans({
@@ -16,22 +15,7 @@ const greatVibes = Great_Vibes({
   display: "swap",
 });
 
-const brier = localFont({
-  src: [
-    {
-      path: "../../public/Brier_Trial/Brier-Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/Brier_Trial/Brier-Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-brier",
-  display: "swap",
-});
+
 
 export const viewport: Viewport = {
   themeColor: "#050505",
@@ -152,7 +136,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${monaSans.variable} ${brier.variable} ${greatVibes.variable} h-full antialiased`}
+      className={`${monaSans.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <head>
         <script

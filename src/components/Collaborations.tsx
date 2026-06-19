@@ -247,21 +247,20 @@ export default function Collaborations() {
   const marqueeClients = [...mockClients, ...mockClients, ...mockClients];
 
   return (
-    <section className="py-24 bg-bg-dark border-t border-white/5 relative overflow-hidden">
+    <section id="portfolio" className="py-24 bg-bg-dark border-t border-white/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16 gap-6">
-          <div className="max-w-xl mx-auto">
-            <span className="text-xs px-3 py-2 border border-white/ rounded-full   uppercase tracking-[0.25em] text-accet font-brier">
-              Creator Portfolio
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white mt-3">
-              Promotional Reels Grid
-            </h2>
-            <p className="text-white/50 text-sm font-brier mt-4 max-w-md mx-auto">
-              Visual, high-production vertical campaigns optimized for maximum social conversion. Hover over a container to play the reel.
-            </p>
-          </div>
+        <div className="flex flex-col items-center text-center mb-16 gap-4">
+          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
+            Creator Portfolio
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">
+            Promotional Reels Grid
+          </h2>
+          <p className="text-white/50 text-sm font-brier max-w-md mx-auto">
+            Visual, high-production vertical campaigns optimized for maximum social conversion. Hover over a container to play the reel.
+          </p>
+        </div>
 
           {/* Async Filter Tabs */}
           <div className="flex bg-card-dark border border-white/5 p-1 rounded-full w-fit flex-wrap mx-auto">
@@ -299,10 +298,9 @@ export default function Collaborations() {
               Tech &amp; Lifestyle
             </button>
           </div>
-        </div>
 
         {/* Reels Grid */}
-        <div className="min-h-[500px]">
+        <div className="min-h-[500px] mt-12">
           <AnimatePresence mode="wait">
             {isLoading ? (
               <motion.div
@@ -341,11 +339,15 @@ export default function Collaborations() {
 
       {/* Infinite Auto-Scrolling Ribbon of Client Logos */}
       <div className="w-full overflow-hidden py-8 select-none relative">
+        {/* Left and Right Fade Gradients */}
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-bg-dark to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-bg-dark to-transparent z-10 pointer-events-none" />
+
         <div className="flex animate-marquee gap-16 w-max items-center">
           {marqueeClients.map((client, idx) => (
             <div
               key={`${client}-${idx}`}
-              className="text-xs font-black uppercase tracking-[0.25em] text-white/40 hover:text-accent transition-colors duration-300 flex items-center gap-4 font-medium "
+              className="text-xs font-black uppercase tracking-[0.25em] text-white/40 hover:text-accent transition-colors duration-300 flex items-center gap-4"
             >
               <span>{client}</span>
               <span className="w-1.5 h-1.5 bg-accent rounded-full opacity-60" />

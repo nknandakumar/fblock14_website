@@ -72,22 +72,23 @@ export default function Hero() {
             variants={itemVariants}
             className="lg:col-span-4 flex flex-col items-center text-center justify-center space-y-6"
           >
-            <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-accent">
+            <div className="flex flex-col items-center text-center gap-4">
+              <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
                 Official Creator
               </span>
-              <h1 className="text-5xl sm:text-6xl font-extrabold uppercase tracking-tight text-white leading-none">
-                F_BLOCK_14
-              </h1>
-              <span className="font-signature text-5xl text-accent block mt-2">
-                Franklin
-              </span>
+              <div className="space-y-2">
+                <h1 className="text-5xl sm:text-6xl font-extrabold uppercase tracking-tight text-white leading-none">
+                  F_BLOCK_14
+                </h1>
+                <span className="font-signature text-5xl text-accent block">
+                  Franklin
+                </span>
+              </div>
+              <p className="text-white/60 text-sm font-brier leading-relaxed max-w-sm mx-auto">
+                Bridging the gap between raw attention and premium brand conversion.
+                Focused on high-production content campaigns that drive authority and real commercial growth.
+              </p>
             </div>
-
-            <p className="text-white/60 text-sm font-brier leading-relaxed max-w-sm mx-auto">
-              Bridging the gap between raw attention and premium brand conversion.
-              Focused on high-production content campaigns that drive authority and real commercial growth.
-            </p>
 
             <div className="flex flex-wrap gap-4 pt-2 justify-center">
               <a

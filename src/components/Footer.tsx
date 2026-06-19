@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -45,64 +44,64 @@ export default function Footer() {
     },
   ];
 
+  const navLinks = [
+    { name: "Work", href: "/#portfolio" },
+    { name: "Metrics", href: "/#metrics" },
+    { name: "Founder", href: "/#founder" },
+  ];
+
   return (
     <footer className="bg-bg-dark border-t border-white/5 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          {/* Logo & Description */}
-          <div className="md:col-span-2 space-y-4">
-            <span className="text-xl font-bold tracking-widest text-white">
+        
+        {/* Centered Top Content */}
+        <div className="flex flex-col items-center text-center gap-8 mb-12 max-w-xl mx-auto">
+          {/* Logo Section */}
+          <Link href="/" className="space-y-2 group">
+            <div className="relative  overflow-hidden  flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <img
+                src="/logo.webp"
+                alt="F_BLOCK_14 Logo"
+                className="w-20 h-20 rounded-full object-contain"
+              />
+            </div>
+            <span className="text-xl md:text-2xl font-bold tracking-widest text-white group-hover:text-accent transition-colors duration-300">
               F_BLOCK_14
             </span>
-            <p className="text-white/50 text-sm max-w-sm font-brier leading-relaxed">
-              Franklin (F_BLOCK_14) is a premium digital creator and founder of Hidden Hand Media. Focused on high-impact brand collaborations, media strategy, and visual excellence.
-            </p>
-          </div>
+          </Link>
+
+          {/* Description */}
+          <p className="text-white/50 text-sm font-sans leading-relaxed max-w-md">
+            Franklin (F_BLOCK_14) is a  digital creator and founder of Hidden Ants Media. Focused on high-impact brand collaborations, media strategy, and visual excellence.
+          </p>
 
           {/* Navigation Links */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
-              Navigation
-            </h4>
-            <ul className="space-y-2.5">
-              <li>
-                <Link
-                  href="/"
-                  className="text-white/50 hover:text-accent text-sm transition-colors duration-200"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-white/50 hover:text-accent text-sm transition-colors duration-200"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-xs font-bold uppercase tracking-wider text-white/70 hover:text-accent transition-colors duration-300"
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
 
-          {/* Socials */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white">
-              Connect
-            </h4>
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-accent hover:border-accent transition-all duration-300 hover:scale-110"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+          {/* Social Links (Filled circles) */}
+          <div className="flex items-center justify-center gap-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-accent text-bg-dark flex items-center justify-center transition-all duration-300 hover:scale-110 hover:bg-white"
+                aria-label={social.name}
+              >
+                {social.icon}
+              </a>
+            ))}
           </div>
         </div>
 
@@ -118,8 +117,8 @@ export default function Footer() {
             >
               Privacy Policy
             </Link>
-            <span className="flex items-center gap-1.5 select-none">
-              Web site by <a href="https://rayvok.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#C9FE34] transition-colors font-bold tracking-wider">RAYVOK</a>
+            <span className="flex items-center  gap-1.5 select-none">
+              Web site  by <a href="https://rayvok.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent border-b  transition-colors font-bold tracking-wider">RAYVOK</a>
             </span>
           </div>
         </div>

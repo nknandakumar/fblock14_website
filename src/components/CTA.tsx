@@ -75,7 +75,7 @@ export default function CTA() {
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight leading-[1.1] mb-10 text-white"
         >
           Let's build something <br />
-          <span className="text-accent">great together.</span>
+          <span className="text-accent font-brier ">great together.</span>
         </motion.h2>
 
         {/* Primary Action Button */}
@@ -95,28 +95,6 @@ export default function CTA() {
           </Link>
         </motion.div>
 
-        {/* Social Icons list */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-wrap justify-center items-center gap-8 md:gap-10 border-t border-white/5 pt-10 w-full max-w-lg"
-        >
-          {socials.map((social) => (
-            <a
-              key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/40 hover:text-accent transition-colors duration-300 hover:scale-110 flex items-center justify-center p-2"
-              title={social.name}
-              aria-label={social.name}
-            >
-              {social.icon}
-            </a>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
