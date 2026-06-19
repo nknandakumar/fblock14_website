@@ -1,136 +1,355 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Play } from "lucide-react";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Play, Sparkles } from "lucide-react";
 
-interface CollabItem {
+interface ReelItem {
   id: number;
-  brand: string;
-  campaign: string;
-  description: string;
-  image: string;
-  type: "image" | "video";
+  label: string;
+  videoUrl: string;
+  category: string;
+  tag: "commercial" | "tech";
 }
 
-export default function Collaborations() {
-  const collabs: CollabItem[] = [
-    {
-      id: 1,
-      brand: "Chrono Lux",
-      campaign: "The Art of Time",
-      description: "A digital campaign showcasing the intricate engineering of luxury timepieces, driving 1.2M+ organic views.",
-      image: "/collab_watch.png",
-      type: "video",
-    },
-    {
-      id: 2,
-      brand: "Zenith Wear",
-      campaign: "Urban Techwear 2026",
-      description: "Visual commercial highlighting minimalist urban techwear aesthetics, resulting in a 24% boost in brand engagement.",
-      image: "/collab_fashion.png",
-      type: "image",
-    },
-    {
-      id: 3,
-      brand: "Aether Sound",
-      campaign: "Pure Silence",
-      description: "High-production video campaign launching premium noise-canceling headphones to a tech-savvy audience.",
-      image: "/collab_tech.png",
-      type: "video",
-    },
-    {
-      id: 4,
-      brand: "Apex Motors",
-      campaign: "Track Bound",
-      description: "A cinematic review and visual-heavy campaign promoting the latest electric luxury sports car series.",
-      image: "/collab_car.png",
-      type: "image",
-    },
-  ];
+// Subcomponent to handle individual video elements to prevent parent re-renders on hover
+function ReelCard({ reel }: { reel: ReelItem }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false; // Enable audio
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlaying(true))
+          .catch(() => {
+            // Autoplay with audio policy fallback
+            if (videoRef.current) {
+              videoRef.current.muted = true;
+              videoRef.current.play()
+                .then(() => setIsPlaying(true))
+                .catch(() => {});
+            }
+          });
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      setIsPlaying(false);
+    }
+  };
+
+  const handleClick = () => {
+    if (videoRef.current) {
+      if (videoRef.current.paused) {
+        videoRef.current.muted = false; // Enable audio
+        videoRef.current.play()
+          .then(() => setIsPlaying(true))
+          .catch(() => {
+            if (videoRef.current) {
+              videoRef.current.muted = true;
+              videoRef.current.play()
+                .then(() => setIsPlaying(true))
+                .catch(() => {});
+            }
+          });
+      } else {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
 
   return (
-    <section className="py-24 bg-bg-dark border-t border-white/5 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-xl">
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-accent">
-              Case Studies
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white mt-3">
-              Brand Collaborations
-            </h2>
-            <p className="text-white/50 text-sm font-brier mt-4">
-              Explore how Franklin partners with industry leaders to craft visual narratives that capture audience attention and elevate brand authority.
-            </p>
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      className="relative aspect-[9/16] rounded-[2.5rem] p-[3px] bg-gradient-to-b from-neutral-600 to-neutral-900 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-hidden cursor-pointer group select-none"
+    >
+      {/* Inner phone body bezel frame */}
+      <div className="relative w-full h-full rounded-[2.3rem] border-[10px] border-neutral-950 bg-neutral-950 overflow-hidden flex flex-col justify-end z-0">
+        
+        {/* Video Player */}
+        <video
+          ref={videoRef}
+          src={reel.videoUrl}
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none transition-transform duration-700 group-hover:scale-105"
+        />
+
+        {/* Static Play Icon Overlay (Visible when not playing) */}
+        {!isPlaying && (
+          <div className="absolute inset-0 bg-black/25 flex items-center justify-center transition-colors duration-300 group-hover:bg-black/45 z-10">
+            <div className="w-14 h-14 rounded-full bg-accent text-bg-dark flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <Play className="w-5 h-5 fill-current translate-x-0.5" />
+            </div>
           </div>
-          <div className="hidden md:block">
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent hover:text-white transition-colors duration-300"
-            >
-              Partner With Us &rarr;
-            </a>
+        )}
+
+        {/* Info Overlay (Flush bottom design, no card border, just gradient overlay) */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 z-20 space-y-1.5 pointer-events-none">
+          <div className="flex items-center justify-between">
+            <span className="text-[9px] font-black uppercase tracking-widest text-accent bg-accent/10 px-2.5 py-0.5 rounded-full inline-block">
+              {reel.category}
+            </span>
+            
+            {/* Pulsing soundwave active indicator */}
+            {isPlaying && (
+              <span className="flex items-center gap-0.5 pr-1">
+                <span className="w-[2px] h-2.5 bg-accent rounded-full animate-bounce" style={{ animationDuration: "0.6s" }} />
+                <span className="w-[2px] h-3.5 bg-accent rounded-full animate-bounce" style={{ animationDuration: "0.4s", animationDelay: "0.15s" }} />
+                <span className="w-[2px] h-2 bg-accent rounded-full animate-bounce" style={{ animationDuration: "0.5s", animationDelay: "0.3s" }} />
+              </span>
+            )}
+          </div>
+          
+          <h3 className="text-sm font-extrabold uppercase tracking-wide text-white leading-tight">
+            {reel.label.split(" | ")[0]}
+          </h3>
+          <p className="text-[10px] font-bold text-white/50 tracking-widest mt-1">
+            {reel.label.split(" | ")[1]}
+          </p>
+        </div>
+
+        {/* Dynamic Island Notch */}
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-30 flex items-center justify-between px-3 shadow-[inset_0_1px_2px_rgba(255,255,255,0.15)] pointer-events-none">
+          <div className="w-7 h-[2px] bg-neutral-900 rounded-full" />
+          <div className="w-2.5 h-2.5 bg-neutral-950 rounded-full border border-neutral-900 flex items-center justify-center">
+            <div className="w-1 h-1 bg-blue-900 rounded-full opacity-40" />
           </div>
         </div>
 
-        {/* Collaborations Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {collabs.map((collab, idx) => (
-            <motion.div
-              key={collab.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="group bg-card-dark border border-white/5 rounded-2xl overflow-hidden flex flex-col hover:border-accent/20 transition-all duration-300 shadow-xl"
+      </div>
+    </div>
+  );
+}
+
+// Smartphone Skeleton Loader Component
+function ReelSkeleton({ count = 6 }: { count?: number }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      {Array.from({ length: count }).map((_, idx) => (
+        <div
+          key={idx}
+          className="relative aspect-[9/16] rounded-[2.5rem] p-[3px] bg-neutral-850 overflow-hidden"
+        >
+          <div className="relative w-full h-full rounded-[2.3rem] border-[10px] border-neutral-950 bg-neutral-950/60 overflow-hidden flex flex-col justify-end p-5">
+            {/* Shimmering effect */}
+            <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/5 to-transparent z-10" />
+
+            {/* Float glass skeleton panel */}
+            <div className="border border-white/5 bg-neutral-900/60 rounded-2xl p-4 space-y-2">
+              <div className="h-3 bg-neutral-800 rounded w-1/3 animate-pulse" />
+              <div className="h-4 bg-neutral-800 rounded w-3/4 animate-pulse" />
+              <div className="h-2 bg-neutral-800 rounded w-1/2 animate-pulse" />
+            </div>
+
+            {/* Dynamic Island */}
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-5 bg-neutral-900 rounded-full z-30" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function Collaborations() {
+  const [activeTab, setActiveTab] = useState<"all" | "commercial" | "tech">("all");
+  const [isLoading, setIsLoading] = useState(false);
+
+  // All 6 video reels provided by the user
+  const allReels: ReelItem[] = [
+    {
+      id: 1,
+      label: "🚘 Renault Duster Launch | 2.1M+ Views",
+      videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865782/renultduster_u9ysvb.mp4",
+      category: "Automotive",
+      tag: "commercial",
+    },
+    {
+      id: 2,
+      label: "🏢 Ambience Conventions | 850K+ Views",
+      videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865778/Ambience_Convention_Hal_wlntfs.mp4",
+      category: "Commercial",
+      tag: "commercial",
+    },
+    {
+      id: 3,
+      label: "📈 Tech & Gadgets Campaign | 1.2M+ Views",
+      videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865789/samsung_smart.cafe_nl5ugp.mp4",
+      category: "Tech & Gear",
+      tag: "tech",
+    },
+    {
+      id: 4,
+      label: "🍫 Kitkat Break Time | 1.4M+ Views",
+      videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865787/kitkat_u6obay.mp4",
+      category: "FMCG",
+      tag: "tech",
+    },
+    {
+      id: 5,
+      label: "💥 Lifestyle & Apparel Collab | 900K+ Views",
+      videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865771/harsha_msdg9n.mp4",
+      category: "Lifestyle",
+      tag: "tech",
+    },
+    {
+      id: 6,
+      label: "🚀 Skoda Launch Promo | 1.5M+ Views",
+      videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865789/skodacar_inm0yl.mp4",
+      category: "Auto Tech",
+      tag: "commercial",
+    },
+  ];
+
+  // Filter reels based on active tab
+  const getFilteredReels = () => {
+    if (activeTab === "all") return allReels;
+    return allReels.filter((reel) => reel.tag === activeTab);
+  };
+
+  // Async tab switcher simulation (simulates a server fetch)
+  const handleTabChange = async (tabName: "all" | "commercial" | "tech") => {
+    if (tabName === activeTab) return;
+    setIsLoading(true);
+    // 800ms delay for simulation
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    setActiveTab(tabName);
+    setIsLoading(false);
+  };
+
+  const filteredReels = getFilteredReels();
+
+  // 50+ Clients Logos Ribbon (Shubhagana brand names)
+  const mockClients = [
+    "SAMSUNG Shivamogga",
+    "AMBIENT Shivamogga",
+    "RENAULT Shivamogga",
+    "SKODA Shivamogga",
+  
+    "HARSHA Shivamogga",
+
+   
+  ];
+
+  // Triple array to create seamless loop marquee
+  const marqueeClients = [...mockClients, ...mockClients, ...mockClients];
+
+  return (
+    <section className="py-24 bg-bg-dark border-t border-white/5 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-16 gap-6">
+          <div className="max-w-xl mx-auto">
+            <span className="text-xs px-3 py-2 border border-white/ rounded-full   uppercase tracking-[0.25em] text-accet font-brier">
+              Creator Portfolio
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white mt-3">
+              Promotional Reels Grid
+            </h2>
+            <p className="text-white/50 text-sm font-brier mt-4 max-w-md mx-auto">
+              Visual, high-production vertical campaigns optimized for maximum social conversion. Hover over a container to play the reel.
+            </p>
+          </div>
+
+          {/* Async Filter Tabs */}
+          <div className="flex bg-card-dark border border-white/5 p-1 rounded-full w-fit flex-wrap mx-auto">
+            <button
+              onClick={() => handleTabChange("all")}
+              disabled={isLoading}
+              className={`text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 ${
+                activeTab === "all"
+                  ? "bg-accent text-bg-dark"
+                  : "text-white/60 hover:text-white"
+              }`}
             >
-              {/* Media Thumbnail */}
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-black/40">
-                <Image
-                  src={collab.image}
-                  alt={`${collab.brand} - ${collab.campaign}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-700 pointer-events-none"
-                />
+              All Reels
+            </button>
+            <button
+              onClick={() => handleTabChange("commercial")}
+              disabled={isLoading}
+              className={`text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 ${
+                activeTab === "commercial"
+                  ? "bg-accent text-bg-dark"
+                  : "text-white/60 hover:text-white"
+              }`}
+            >
+              Auto &amp; Commercial
+            </button>
+            <button
+              onClick={() => handleTabChange("tech")}
+              disabled={isLoading}
+              className={`text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 ${
+                activeTab === "tech"
+                  ? "bg-accent text-bg-dark"
+                  : "text-white/60 hover:text-white"
+              }`}
+            >
+              Tech &amp; Lifestyle
+            </button>
+          </div>
+        </div>
 
-                {/* Video Play Overlay */}
-                {collab.type === "video" && (
-                  <div className="absolute inset-0 bg-black/25 flex items-center justify-center transition-colors duration-300 group-hover:bg-black/45">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-14 h-14 rounded-full bg-accent text-bg-dark flex items-center justify-center shadow-lg shadow-accent/20 cursor-pointer"
-                    >
-                      <Play className="w-6 h-6 fill-current translate-x-0.5" />
-                    </motion.div>
-                  </div>
-                )}
+        {/* Reels Grid */}
+        <div className="min-h-[500px]">
+          <AnimatePresence mode="wait">
+            {isLoading ? (
+              <motion.div
+                key="skeleton"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ReelSkeleton count={activeTab === "all" ? 6 : 3} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 sm:grid-cols-3 gap-8"
+              >
+                {filteredReels.map((reel) => (
+                  <ReelCard key={reel.id} reel={reel} />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
-                {/* Gradient overlay on bottom */}
-                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-bg-dark via-bg-dark/10 to-transparent pointer-events-none" />
-              </div>
+        {/* Ribbon Header divider */}
+        <div className="mt-28 mb-10 text-center">
+          <span className=" font-bold font-brier text-sm md:text-lg  uppercase tracking-[0.3em] text-white/40 block">
+            Trusted by 50+ brands and businesses
+          </span>
+        </div>
+      </div>
 
-              {/* Campaign details */}
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-accent bg-accent/10 px-2.5 py-1 rounded-full">
-                    {collab.type === "video" ? "Video Integration" : "Photo Shoot"}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold uppercase text-white tracking-wide">
-                  {collab.brand}
-                </h3>
-                <h4 className="text-xs font-semibold uppercase text-accent tracking-widest mt-1 mb-3">
-                  {collab.campaign}
-                </h4>
-                <p className="text-white/60 text-sm font-brier leading-relaxed mt-auto">
-                  {collab.description}
-                </p>
-              </div>
-            </motion.div>
+      {/* Infinite Auto-Scrolling Ribbon of Client Logos */}
+      <div className="w-full overflow-hidden py-8 select-none relative">
+        <div className="flex animate-marquee gap-16 w-max items-center">
+          {marqueeClients.map((client, idx) => (
+            <div
+              key={`${client}-${idx}`}
+              className="text-xs font-black uppercase tracking-[0.25em] text-white/40 hover:text-accent transition-colors duration-300 flex items-center gap-4 font-medium "
+            >
+              <span>{client}</span>
+              <span className="w-1.5 h-1.5 bg-accent rounded-full opacity-60" />
+            </div>
           ))}
         </div>
       </div>

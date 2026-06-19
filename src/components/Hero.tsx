@@ -56,7 +56,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-28 pb-16 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-28 pb-16 overflow-hidden bg-bg-dark text-white">
       {/* Background visual detail */}
       <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-accent/5 rounded-full filter blur-[100px] pointer-events-none -z-10" />
 
@@ -65,12 +65,12 @@ export default function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
         >
           {/* Left Column - Creator info (30% equivalent / 4 cols) */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-4 flex flex-col justify-center space-y-6"
+            className="lg:col-span-4 flex flex-col items-center text-center justify-center space-y-6"
           >
             <div className="space-y-2">
               <span className="text-xs font-bold uppercase tracking-[0.25em] text-accent">
@@ -79,17 +79,17 @@ export default function Hero() {
               <h1 className="text-5xl sm:text-6xl font-extrabold uppercase tracking-tight text-white leading-none">
                 F_BLOCK_14
               </h1>
-              <span className="font-signature text-5xl text-accent block mt-2 ml-4">
+              <span className="font-signature text-5xl text-accent block mt-2">
                 Franklin
               </span>
             </div>
 
-            <p className="text-white/60 text-sm font-brier leading-relaxed max-w-sm">
+            <p className="text-white/60 text-sm font-brier leading-relaxed max-w-sm mx-auto">
               Bridging the gap between raw attention and premium brand conversion.
               Focused on high-production content campaigns that drive authority and real commercial growth.
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-2">
+            <div className="flex flex-wrap gap-4 pt-2 justify-center">
               <a
                 href="tel:+1234567890"
                 className="group flex items-center gap-2 bg-accent hover:bg-white text-bg-dark font-bold text-xs tracking-widest uppercase px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-md shadow-accent/5"
@@ -104,7 +104,7 @@ export default function Hero() {
                 className="group flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold text-xs tracking-widest uppercase px-6 py-3.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 <svg
-                  className="w-3.5 h-3.5 fill-current"
+                  className="w-3.5 h-3.5 fill-current text-white group-hover:text-accent transition-colors"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -121,27 +121,14 @@ export default function Hero() {
             className="lg:col-span-5 flex justify-center items-center relative"
           >
             <div className="relative w-full max-w-[400px] lg:max-w-none aspect-[4/5] rounded-2xl overflow-hidden group border border-white/5 shadow-2xl bg-card-dark">
-              {/* Premium gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 z-10" />
-              
               <Image
-                src="/franklin_portrait.png"
+                src="/heroImg.png"
                 alt="Franklin Portrait - F_BLOCK_14"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
-
-              {/* Float branding */}
-              <div className="absolute bottom-6 left-6 z-20">
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent/80 block">
-                  Creator &amp; Founder
-                </span>
-                <span className="text-sm font-bold uppercase text-white tracking-widest">
-                  Franklin
-                </span>
-              </div>
             </div>
           </motion.div>
 

@@ -27,7 +27,7 @@ export default function Contact() {
   return (
     <>
       <Navbar />
-      <main className="flex-grow pt-32 pb-12">
+      <main className="flex-grow pt-32 pb-12 bg-bg-dark text-white">
         {/* Contact Hero */}
         <section className="py-16 text-center max-w-4xl mx-auto px-6">
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-accent">

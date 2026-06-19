@@ -118,8 +118,8 @@ export default function Footer() {
             >
               Privacy Policy
             </Link>
-            <span className="flex items-center gap-1 select-none">
-              Made with <span className="text-red-500 animate-pulse">❤️</span> by antigravity
+            <span className="flex items-center gap-1.5 select-none">
+              Web site by <a href="https://rayvok.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#C9FE34] transition-colors font-bold tracking-wider">RAYVOK</a>
             </span>
           </div>
         </div>
