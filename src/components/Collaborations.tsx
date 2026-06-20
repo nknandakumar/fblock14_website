@@ -196,14 +196,14 @@ export default function Collaborations() {
     },
     {
       id: 4,
-      label: "Kitkat Break Time | 1.4M+ Views",
-      videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865787/kitkat_u6obay.mp4",
+      label: "Simple Engery Scooter - Shivamogga | 3.5M+ Views",
+      videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865760/simpleone_ecivnt.mp4",
       category: "FMCG",
       tag: "tech",
     },
     {
       id: 5,
-      label: "Lifestyle & Apparel Collab | 900K+ Views",
+      label: "Harsha second store open in shivamogga| 900K+ Views",
       videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865771/harsha_msdg9n.mp4",
       category: "Lifestyle",
       tag: "tech",

@@ -116,12 +116,29 @@ export default function Hero() {
           animate={loaderFinished ? "visible" : "hidden"}
           className="flex flex-col items-center text-center space-y-8 w-full"
         >
-          {/* 1. Top Status Badge */}
-          <motion.div variants={itemVariants} className="flex justify-center">
-            <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white bg-neutral-900 border border-neutral-800 px-4 py-2.5 rounded-full shadow-md">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-              CURRENTLY PROMOTING BUSINESSES
-            </span>
+          {/* 1. Top Status Ticker (Star Separator Scroll) */}
+          <motion.div 
+            variants={itemVariants} 
+            className="w-full max-w-[280px] min-[380px]:max-w-sm sm:max-w-lg mx-auto overflow-hidden relative select-none py-1 pointer-events-none"
+          >
+            {/* Fade out edges */}
+            <div className="absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-bg-dark to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-bg-dark to-transparent z-10" />
+
+            <div 
+              className="flex animate-marquee gap-8 w-max items-center whitespace-nowrap will-change-transform"
+              style={{ animationDuration: "45s" }}
+            >
+              {[...Array(3)].map((_, i) => (
+                <div key={i} className="flex items-center gap-8 text-[9px] sm:text-[10px] font-bold tracking-[0.2em] text-neutral-400/90 uppercase font-sans">
+                  <span><span className="text-accent">★</span> Promotional Reels</span>
+                  <span><span className="text-accent">★</span> Podcast Features</span>
+                  <span><span className="text-accent">★</span> Sponsored Content</span>
+                  <span><span className="text-accent">★</span> 100K Followers</span>
+                  <span><span className="text-accent">★</span> 50M+ Views</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
           {/* 2. Main Headline */}

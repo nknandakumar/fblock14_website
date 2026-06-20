@@ -66,25 +66,29 @@ export default function PageEffects({ children }: { children: React.ReactNode })
           >
             {/* Stair columns background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute top-0 bottom-0 bg-accent"
-                  style={{
-                    left: `${(i * 100) / 6}%`,
-                    width: `calc(${100 / 6}% + 1.5px)`, // Overlap slightly to prevent sub-pixel gaps
-                  }}
-                  initial={{ y: 0 }}
-                  exit={{
-                    y: "100%",
-                    transition: {
-                      duration: 0.8,
-                      ease: [0.76, 0, 0.24, 1],
-                      delay: 0.05 * i,
-                    },
-                  }}
-                />
-              ))}
+              {[...Array(6)].map((_, i) => {
+                // Calculate distance from center (for 6 columns, center is between index 2 and 3)
+                const delayIndex = Math.abs(i - 2.5) - 0.5; 
+                return (
+                  <motion.div
+                    key={i}
+                    className="absolute top-0 bottom-0 bg-accent"
+                    style={{
+                      left: `${(i * 100) / 6}%`,
+                      width: `calc(${100 / 6}% + 1.5px)`, // Overlap slightly to prevent sub-pixel gaps
+                    }}
+                    initial={{ y: 0 }}
+                    exit={{
+                      y: "100%",
+                      transition: {
+                        duration: 1.2,
+                        ease: [0.85, 0, 0.15, 1], // Extra smooth easing curve
+                        delay: 0.12 * delayIndex, // Slightly longer delay to spread paint load
+                      },
+                    }}
+                  />
+                );
+              })}
             </div>
 
             <motion.div 
@@ -92,7 +96,7 @@ export default function PageEffects({ children }: { children: React.ReactNode })
               exit={{ 
                 opacity: 0, 
                 y: 80,
-                transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } 
+                transition: { duration: 0.6, ease: [0.85, 0, 0.15, 1] } 
               }}
             >
               {/* Static Brand Name */}
@@ -123,7 +127,7 @@ export default function PageEffects({ children }: { children: React.ReactNode })
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: loading ? 0 : 1 }}
-        transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        transition={{ duration: 1.0, ease: [0.25, 1, 0.5, 1], delay: 0.6 }} // Delayed slightly to de-congest page load paints
         className="flex-grow flex flex-col"
       >
         {children}
