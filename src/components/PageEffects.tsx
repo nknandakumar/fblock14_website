@@ -60,75 +60,61 @@ export default function PageEffects({ children }: { children: React.ReactNode })
       <AnimatePresence mode="wait">
         {loading && (
           <motion.div
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center select-none"
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center select-none text-bg-dark overflow-hidden"
             initial={{ opacity: 1 }}
-            exit={{ 
-              opacity: 0,
-              transition: { duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 0.3 } 
-            }}
+            exit={{ opacity: 1 }}
           >
-            {/* Cinematic Shutter Bars */}
-            <motion.div 
-              className="absolute top-0 left-0 w-full h-[50vh] bg-[#050505]"
-              exit={{ y: "-100%", transition: { duration: 1.2, ease: [0.85, 0, 0.15, 1], delay: 0.1 } }}
-            />
-            <motion.div 
-              className="absolute bottom-0 left-0 w-full h-[50vh] bg-[#050505]"
-              exit={{ y: "100%", transition: { duration: 1.2, ease: [0.85, 0, 0.15, 1], delay: 0.1 } }}
-            />
+            {/* Stair columns background */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute top-0 bottom-0 bg-accent"
+                  style={{
+                    left: `${(i * 100) / 6}%`,
+                    width: `calc(${100 / 6}% + 1.5px)`, // Overlap slightly to prevent sub-pixel gaps
+                  }}
+                  initial={{ y: 0 }}
+                  exit={{
+                    y: "100%",
+                    transition: {
+                      duration: 0.8,
+                      ease: [0.76, 0, 0.24, 1],
+                      delay: 0.05 * i,
+                    },
+                  }}
+                />
+              ))}
+            </div>
 
-            {/* Ambient Movie Lighting */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,204,1,0.08)_0%,transparent_60%)] pointer-events-none" />
-
-            {/* Content Container */}
             <motion.div 
-              className="relative z-10 flex flex-col items-center"
+              className="flex flex-col items-center relative z-10"
               exit={{ 
-                scale: 1.8, 
                 opacity: 0, 
-                filter: "blur(10px)", 
-                transition: { duration: 1, ease: [0.76, 0, 0.24, 1] } 
+                y: 80,
+                transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } 
               }}
             >
-              {/* Cinematic Studio/Brand Name */}
-              <motion.h1 
-                initial={{ opacity: 0, letterSpacing: "0.1em", scale: 0.95 }}
-                animate={{ opacity: 1, letterSpacing: "0.3em", scale: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                className="text-3xl md:text-5xl lg:text-6xl font-black text-white uppercase font-sans mb-8 tracking-[0.3em] drop-shadow-[0_0_25px_rgba(255,255,255,0.15)]"
-              >
+              {/* Static Brand Name */}
+              <div className="text-lg font-semibold  md:text-4xl font-black uppercase font-sans text-center mt-2">
                 F_BLOCK_14
-              </motion.h1>
-
-              {/* Progress Area */}
-              <div className="flex flex-col items-center gap-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <span className="text-xl md:text-2xl font-bold text-accent font-mono tracking-[0.2em] tabular-nums">
-                    {Math.round(progress).toString().padStart(3, "0")}
-                  </span>
-                </motion.div>
-                
-                {/* Slim Cinematic Loader Line */}
-                <div className="w-40 md:w-56 h-[1px] bg-white/10 relative overflow-hidden">
-                  <motion.div 
-                    className="absolute top-0 left-0 h-full bg-accent shadow-[0_0_10px_rgba(245,193,24,0.8)]"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
               </div>
+              {/* Massive Elegant Counter */}
+              <div className="overflow-hidden h-28 md:h-36 flex items-center justify-center">
+                <motion.span 
+                  initial={{ y: 100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-7xl md:text-8xl lg:text-9xl font-black tracking-wider font-sans select-none tabular-nums"
+                >
+                  {Math.round(progress).toString().padStart(3, "0")}
+                </motion.span>
+              </div>
+
+              
             </motion.div>
             
-            {/* Cinematic Subtitle / Copyright */}
-            <motion.div 
-              className="absolute bottom-12 text-[8px] md:text-[10px] tracking-[0.5em] text-white/30 uppercase font-bold z-10"
-              exit={{ opacity: 0, transition: { duration: 0.4 } }}
-            >
-              A Franklin Production
-            </motion.div>
+            
           </motion.div>
         )}
       </AnimatePresence>

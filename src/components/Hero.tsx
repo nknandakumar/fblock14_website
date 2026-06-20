@@ -125,10 +125,10 @@ export default function Hero() {
           </motion.div>
 
           {/* 2. Main Headline */}
-          <motion.div variants={itemVariants} className="space-y-3">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-white leading-[1.05]">
-              <span className=" ">Shivamogga's Leading  <span className="text-accent ">Digital Creator.</span></span>
-              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extrabold text-white/95 tracking-normal mt-3 font-sans capitalize">
+          <motion.div variants={itemVariants} className="space-y-3 px-2">
+            <h1 className="text-xl min-[380px]:text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-white leading-[1.1]">
+              <span className="block sm:inline">Shivamogga's Leading <span className="text-accent">Digital Creator.</span></span>
+              <span className="block text-sm min-[380px]:text-base sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-white/90 tracking-wide mt-2.5 font-sans uppercase">
                 PROMOTING BUSINESSES THROUGH CONTENT
               </span>
             </h1>
@@ -137,7 +137,7 @@ export default function Hero() {
           {/* 3. Sub-description */}
           <motion.p
             variants={itemVariants}
-            className="text-neutral-400 text-base sm:text-lg max-w-[680px] mx-auto leading-relaxed"
+            className="text-neutral-400 text-xs min-[380px]:text-sm sm:text-base max-w-[680px] mx-auto leading-relaxed px-4"
           >
            Franklin helps brands grow through high-performing promotional reels, creator-led campaigns, and podcast collaborations that connect businesses with engaged audiences across Karnataka.
           </motion.p>
@@ -145,7 +145,7 @@ export default function Hero() {
           {/* 4. CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center justify-center gap-4 pt-2"
+            className="flex flex-row items-center justify-center gap-3 sm:gap-4 pt-2"
           >
             <ButtonCrossArrow href="/contact" text="Start a Collab" />
             <HoverNavLink href="#portfolio" text="See My Work" isButton />
@@ -153,42 +153,53 @@ export default function Hero() {
 
           {/* Interactive Middle Showcase Reels Marquee (Between CTA Buttons and Franklin Image) */}
           {loaderFinished && (
-            <motion.div
-              variants={itemVariants}
-              className="w-full py-4 select-none relative max-w-3xl overflow-hidden"
-            >
-              {/* Fade out edges */}
-              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-bg-dark to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-bg-dark to-transparent z-10 pointer-events-none" />
+            <div className="w-full flex flex-col items-center gap-6 py-2 select-none relative max-w-3xl">
+              <motion.div
+                variants={itemVariants}
+                className="w-full overflow-hidden relative"
+              >
+                {/* Fade out edges */}
+                <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-bg-dark to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-bg-dark to-transparent z-10 pointer-events-none" />
 
-              <div className="flex animate-marquee gap-5 w-max items-center will-change-transform py-2">
-                {marqueeAssets.map((asset, idx) => (
-                  <div
-                    key={`showcase-asset-${idx}`}
-                    className="w-24 sm:w-32 aspect-[9/16] relative rounded-xl overflow-hidden bg-neutral-950 border border-white/10 flex-shrink-0 shadow-md transition-all duration-300 hover:scale-105 hover:border-accent/40 cursor-pointer"
-                  >
-                    {asset.type === "video" ? (
-                      <video
-                        src={asset.url}
-                        loop
-                        muted
-                        playsInline
-                        autoPlay
-                        preload="metadata"
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <img
-                        src={asset.url}
-                        alt="Franklin Collaboration"
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+                <div className="flex animate-marquee gap-5 w-max items-center will-change-transform py-2">
+                  {marqueeAssets.map((asset, idx) => (
+                    <div
+                      key={`showcase-asset-${idx}`}
+                      className="w-24 sm:w-32 aspect-[9/16] relative rounded-xl overflow-hidden bg-neutral-950 border border-white/10 flex-shrink-0 shadow-md transition-all duration-300 hover:scale-105 hover:border-accent/40 cursor-pointer"
+                    >
+                      {asset.type === "video" ? (
+                        <video
+                          src={asset.url}
+                          loop
+                          muted
+                          playsInline
+                          autoPlay
+                          preload="metadata"
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <img
+                          src={asset.url}
+                          alt="Franklin Collaboration"
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* View More Button below Reels */}
+              <motion.div variants={itemVariants} className="pt-1">
+                <HoverNavLink 
+                  href="https://instagram.com/f_block_14" 
+                  text="View More" 
+                  isButton 
+                />
+              </motion.div>
+            </div>
           )}
 
           {/* 5 & 6. Franklin Image & Floating Achievement Pills */}
@@ -234,13 +245,13 @@ export default function Hero() {
             <motion.div
               variants={floatBadge1}
               whileHover={{ scale: 1.08, rotate: -1, transition: { duration: 0.2 } }}
-              className="absolute top-10 left-[0px] sm:left-[-40px] lg:left-[-100px] z-20 select-none cursor-pointer"
+              className="absolute top-8 left-[-15px] min-[380px]:left-[-5px] sm:left-[-40px] lg:left-[-100px] z-20 select-none cursor-pointer scale-[0.72] min-[380px]:scale-[0.88] sm:scale-100 origin-left"
             >
-              <div className="flex items-center gap-3 bg-neutral-900 border border-accent/25 border-l-4 border-l-accent p-3.5 rounded-xl shadow-2xl backdrop-blur-md">
-                <Award className="w-5 h-5 text-accent animate-pulse" />
+              <div className="flex items-center gap-2 bg-neutral-900/90 border border-accent/20 border-l-4 border-l-accent p-2.5 sm:p-3.5 rounded-xl shadow-2xl backdrop-blur-md">
+                <Award className="w-4 h-4 sm:w-5 sm:h-5 text-accent animate-pulse" />
                 <div className="text-left leading-tight">
-                  <div className="font-black text-white text-xs sm:text-sm">5 Years</div>
-                  <div className="text-[9px] text-neutral-400 font-bold uppercase tracking-wider mt-0.5">In Content</div>
+                  <div className="font-black text-white text-[11px] sm:text-sm">5 Years</div>
+                  <div className="text-[8px] sm:text-[9px] text-neutral-400 font-bold uppercase tracking-wider mt-0.5">In Content</div>
                 </div>
               </div>
             </motion.div>
@@ -249,13 +260,13 @@ export default function Hero() {
             <motion.div
               variants={floatBadge2}
               whileHover={{ scale: 1.08, rotate: 1, transition: { duration: 0.2 } }}
-              className="absolute top-16 right-[0px] sm:right-[-40px] lg:right-[-100px] z-20 select-none cursor-pointer"
+              className="absolute top-14 right-[-15px] min-[380px]:right-[-5px] sm:right-[-40px] lg:right-[-100px] z-20 select-none cursor-pointer scale-[0.72] min-[380px]:scale-[0.88] sm:scale-100 origin-right"
             >
-              <div className="flex items-center gap-3 bg-neutral-900 border border-accent/25 border-l-4 border-l-accent p-3.5 rounded-xl shadow-2xl backdrop-blur-md">
-                <Users className="w-5 h-5 text-accent animate-pulse" />
+              <div className="flex items-center gap-2 bg-neutral-900/90 border border-accent/20 border-l-4 border-l-accent p-2.5 sm:p-3.5 rounded-xl shadow-2xl backdrop-blur-md">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-accent animate-pulse" />
                 <div className="text-left leading-tight">
-                  <div className="font-black text-white text-xs sm:text-sm">100K+</div>
-                  <div className="text-[9px] text-neutral-400 font-bold uppercase tracking-wider mt-0.5">Followers</div>
+                  <div className="font-black text-white text-[11px] sm:text-sm">100K+</div>
+                  <div className="text-[8px] sm:text-[9px] text-neutral-400 font-bold uppercase tracking-wider mt-0.5">Followers</div>
                 </div>
               </div>
             </motion.div>
@@ -264,13 +275,13 @@ export default function Hero() {
             <motion.div
               variants={floatBadge3}
               whileHover={{ scale: 1.08, rotate: 2, transition: { duration: 0.2 } }}
-              className="absolute bottom-28 left-[-10px] sm:left-[-60px] lg:left-[-120px] z-20 select-none cursor-pointer"
+              className="absolute bottom-24 left-[-20px] min-[380px]:left-[-10px] sm:left-[-60px] lg:left-[-120px] z-20 select-none cursor-pointer scale-[0.72] min-[380px]:scale-[0.88] sm:scale-100 origin-left"
             >
-              <div className="flex items-center gap-3 bg-neutral-900 border border-accent/25 border-l-4 border-l-accent p-3.5 rounded-xl shadow-2xl backdrop-blur-md">
-                <Play className="w-5 h-5 text-accent fill-current animate-pulse" />
+              <div className="flex items-center gap-2 bg-neutral-900/90 border border-accent/20 border-l-4 border-l-accent p-2.5 sm:p-3.5 rounded-xl shadow-2xl backdrop-blur-md">
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 text-accent fill-current animate-pulse" />
                 <div className="text-left leading-tight">
-                  <div className="font-black text-white text-xs sm:text-sm">50M+</div>
-                  <div className="text-[9px] text-neutral-400 font-bold uppercase tracking-wider mt-0.5">Video Views</div>
+                  <div className="font-black text-white text-[11px] sm:text-sm">50M+</div>
+                  <div className="text-[8px] sm:text-[9px] text-neutral-400 font-bold uppercase tracking-wider mt-0.5">Video Views</div>
                 </div>
               </div>
             </motion.div>
@@ -279,13 +290,13 @@ export default function Hero() {
             <motion.div
               variants={floatBadge4}
               whileHover={{ scale: 1.08, rotate: -2, transition: { duration: 0.2 } }}
-              className="absolute bottom-20 right-[-10px] sm:right-[-60px] lg:right-[-120px] z-20 select-none cursor-pointer"
+              className="absolute bottom-16 right-[-20px] min-[380px]:right-[-10px] sm:right-[-60px] lg:right-[-120px] z-20 select-none cursor-pointer scale-[0.72] min-[380px]:scale-[0.88] sm:scale-100 origin-right"
             >
-              <div className="flex items-center gap-3 bg-neutral-900 border border-accent/25 border-l-4 border-l-accent p-3.5 rounded-xl shadow-2xl backdrop-blur-md">
-                <Briefcase className="w-5 h-5 text-accent animate-pulse" />
+              <div className="flex items-center gap-2 bg-neutral-900/90 border border-accent/20 border-l-4 border-l-accent p-2.5 sm:p-3.5 rounded-xl shadow-2xl backdrop-blur-md">
+                <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-accent animate-pulse" />
                 <div className="text-left leading-tight">
-                  <div className="font-black text-white text-xs sm:text-sm">100+</div>
-                  <div className="text-[9px] text-neutral-400 font-bold uppercase tracking-wider mt-0.5">Brands Worked With</div>
+                  <div className="font-black text-white text-[11px] sm:text-sm">100+</div>
+                  <div className="text-[8px] sm:text-[9px] text-neutral-400 font-bold uppercase tracking-wider mt-0.5">Brands Worked With</div>
                 </div>
               </div>
             </motion.div>

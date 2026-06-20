@@ -29,7 +29,7 @@ export default function HoverNavLink({
 
   const buttonContent = (
     <>
-      <div className='inline-flex h-full translate-y-0 items-center justify-center px-6 transition duration-500 group-hover:-translate-y-[150%] text-white'>
+      <div className='inline-flex h-full translate-y-0 items-center justify-center px-4 sm:px-6 transition duration-500 group-hover:-translate-y-[150%] text-white'>
         {text}
       </div>
       <div className='absolute inline-flex h-full w-full translate-y-full items-center justify-center text-bg-dark transition duration-500 group-hover:translate-y-0'>
@@ -40,10 +40,13 @@ export default function HoverNavLink({
   );
 
   if (isButton) {
-    const btnClasses = `group relative inline-flex h-14 items-center justify-center overflow-hidden rounded-full border-2 border-white/20 hover:border-accent font-black uppercase tracking-widest text-xs md:text-sm bg-neutral-900 transition-all duration-300 ${className}`;
+    const btnClasses = `group relative inline-flex h-12 sm:h-14 items-center justify-center overflow-hidden rounded-full border-2 border-white/20 hover:border-accent font-black uppercase tracking-widest text-[10px] sm:text-xs md:text-sm bg-neutral-900 transition-all duration-300 ${className}`;
     if (href) {
       if (href.startsWith("#")) {
         return <a href={href} onClick={onClick} className={btnClasses}>{buttonContent}</a>;
+      }
+      if (href.startsWith("http")) {
+        return <a href={href} onClick={onClick} target="_blank" rel="noopener noreferrer" className={btnClasses}>{buttonContent}</a>;
       }
       return <Link href={href} onClick={onClick} className={btnClasses}>{buttonContent}</Link>;
     }
@@ -55,6 +58,9 @@ export default function HoverNavLink({
   if (href) {
     if (href.startsWith("#")) {
       return <a href={href} onClick={onClick} className={navClasses}>{content}</a>;
+    }
+    if (href.startsWith("http")) {
+      return <a href={href} onClick={onClick} target="_blank" rel="noopener noreferrer" className={navClasses}>{content}</a>;
     }
     return <Link href={href} onClick={onClick} className={navClasses}>{content}</Link>;
   }

@@ -56,10 +56,10 @@ export const metadata: Metadata = {
     siteName: "F_BLOCK_14",
     images: [
       {
-        url: "/logo.webp",
+        url: "/og_image.png",
         width: 1200,
         height: 630,
-        alt: "F_BLOCK_14 Logo",
+        alt: "F_BLOCK_14 - Official Creator Website & Business Collaborations",
       },
     ],
   },
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "F_BLOCK_14 | Franklin - Official Creator Website",
     description: "Partner with Franklin (F_BLOCK_14). Explore premium brand collaborations, statistics, and media strategy with the founder of Hidden Hand Media.",
-    images: ["/logo.webp"],
+    images: ["/og_image.png"],
     creator: "@fblock14",
   },
   robots: {
