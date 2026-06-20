@@ -45,8 +45,11 @@ export default function Footer() {
   ];
 
   const navLinks = [
+     { name: "Metrics", href: "/#metrics" },
+         {name:"Services", href:"/#services"},
     { name: "Work", href: "/#portfolio" },
-    { name: "Metrics", href: "/#metrics" },
+
+   {name:"Testimonials", href:"/#testimonials"},
     { name: "Founder", href: "/#founder" },
   ];
 
@@ -72,20 +75,23 @@ export default function Footer() {
 
           {/* Description */}
           <p className="text-white/50 text-sm font-sans leading-relaxed max-w-md">
-            Franklin (F_BLOCK_14) is a  digital creator and founder of Hidden Ants Media. Focused on high-impact brand collaborations, media strategy, and visual excellence.
+            Creating content that connects people, brands, and opportunities.
           </p>
 
           {/* Navigation Links */}
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-xs font-bold uppercase tracking-wider text-white/70 hover:text-accent transition-colors duration-300"
-              >
-                {link.name}
-              </Link>
-            ))}
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-xs font-bold uppercase tracking-wider text-white/70 hover:text-accent transition-colors duration-300"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+           
           </div>
 
           {/* Social Links (Filled circles) */}

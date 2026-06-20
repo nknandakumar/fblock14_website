@@ -18,6 +18,7 @@ function ReelCard({ reel }: { reel: ReelItem }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handleMouseEnter = () => {
+    if (typeof window !== "undefined" && !window.matchMedia("(hover: hover)").matches) return;
     if (videoRef.current) {
       videoRef.current.muted = false; // Enable audio
       const playPromise = videoRef.current.play();
@@ -38,6 +39,7 @@ function ReelCard({ reel }: { reel: ReelItem }) {
   };
 
   const handleMouseLeave = () => {
+    if (typeof window !== "undefined" && !window.matchMedia("(hover: hover)").matches) return;
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
@@ -171,42 +173,42 @@ export default function Collaborations() {
   const allReels: ReelItem[] = [
     {
       id: 1,
-      label: "🚘 Renault Duster Launch | 2.1M+ Views",
+      label: "Renault Duster Launch | 2.1M+ Views",
       videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865782/renultduster_u9ysvb.mp4",
       category: "Automotive",
       tag: "commercial",
     },
     {
       id: 2,
-      label: "🏢 Ambience Conventions | 850K+ Views",
+      label: "Ambience Conventions | 850K+ Views",
       videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865778/Ambience_Convention_Hal_wlntfs.mp4",
       category: "Commercial",
       tag: "commercial",
     },
     {
       id: 3,
-      label: "📈 Tech & Gadgets Campaign | 1.2M+ Views",
+      label: "Tech & Gadgets Campaign | 1.2M+ Views",
       videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865789/samsung_smart.cafe_nl5ugp.mp4",
       category: "Tech & Gear",
       tag: "tech",
     },
     {
       id: 4,
-      label: "🍫 Kitkat Break Time | 1.4M+ Views",
+      label: "Kitkat Break Time | 1.4M+ Views",
       videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865787/kitkat_u6obay.mp4",
       category: "FMCG",
       tag: "tech",
     },
     {
       id: 5,
-      label: "💥 Lifestyle & Apparel Collab | 900K+ Views",
+      label: "Lifestyle & Apparel Collab | 900K+ Views",
       videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865771/harsha_msdg9n.mp4",
       category: "Lifestyle",
       tag: "tech",
     },
     {
       id: 6,
-      label: "🚀 Skoda Launch Promo | 1.5M+ Views",
+      label: "Skoda Launch Promo | 1.5M+ Views",
       videoUrl: "https://res.cloudinary.com/dokrpo5fl/video/upload/v1781865789/skodacar_inm0yl.mp4",
       category: "Auto Tech",
       tag: "commercial",
@@ -255,49 +257,12 @@ export default function Collaborations() {
             Creator Portfolio
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">
-            Promotional Reels Grid
+            Reels Engineered for Commercial Conversion
           </h2>
-          <p className="text-white/50 text-sm font-brier max-w-md mx-auto">
-            Visual, high-production vertical campaigns optimized for maximum social conversion. Hover over a container to play the reel.
+          <p className="text-white/50 text-sm font-sans max-w-md mx-auto">
+            Visual, high-production vertical campaigns optimized for maximum social conversion. Tap on mobile or hover on desktop to play.
           </p>
         </div>
-
-          {/* Async Filter Tabs */}
-          <div className="flex bg-card-dark border border-white/5 p-1 rounded-full w-fit flex-wrap mx-auto">
-            <button
-              onClick={() => handleTabChange("all")}
-              disabled={isLoading}
-              className={`text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 ${
-                activeTab === "all"
-                  ? "bg-accent text-bg-dark"
-                  : "text-white/60 hover:text-white"
-              }`}
-            >
-              All Reels
-            </button>
-            <button
-              onClick={() => handleTabChange("commercial")}
-              disabled={isLoading}
-              className={`text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 ${
-                activeTab === "commercial"
-                  ? "bg-accent text-bg-dark"
-                  : "text-white/60 hover:text-white"
-              }`}
-            >
-              Auto &amp; Commercial
-            </button>
-            <button
-              onClick={() => handleTabChange("tech")}
-              disabled={isLoading}
-              className={`text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 ${
-                activeTab === "tech"
-                  ? "bg-accent text-bg-dark"
-                  : "text-white/60 hover:text-white"
-              }`}
-            >
-              Tech &amp; Lifestyle
-            </button>
-          </div>
 
         {/* Reels Grid */}
         <div className="min-h-[500px] mt-12">
@@ -331,7 +296,7 @@ export default function Collaborations() {
 
         {/* Ribbon Header divider */}
         <div className="mt-28 mb-10 text-center">
-          <span className=" font-bold font-brier text-sm md:text-lg  uppercase tracking-[0.3em] text-white/40 block">
+          <span className=" font-semibold font-sans text-sm   uppercase tracking-[0.1em] text-white/40 block">
             Trusted by 50+ brands and businesses
           </span>
         </div>
@@ -343,13 +308,13 @@ export default function Collaborations() {
         <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-bg-dark to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-bg-dark to-transparent z-10 pointer-events-none" />
 
-        <div className="flex animate-marquee gap-16 w-max items-center">
+        <div className="flex animate-marquee gap-24 sm:gap-28 w-max items-center">
           {marqueeClients.map((client, idx) => (
             <div
               key={`${client}-${idx}`}
-              className="text-xs font-black uppercase tracking-[0.25em] text-white/40 hover:text-accent transition-colors duration-300 flex items-center gap-4"
+              className="text-sm sm:text-base font-black uppercase tracking-[0.3em] text-white/40 hover:text-accent transition-colors duration-300 flex items-center gap-8"
             >
-              <span>{client}</span>
+              <span className="font-sans tracking-normal font-medium" >{client}</span>
               <span className="w-1.5 h-1.5 bg-accent rounded-full opacity-60" />
             </div>
           ))}

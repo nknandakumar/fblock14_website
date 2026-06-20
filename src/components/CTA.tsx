@@ -50,7 +50,7 @@ export default function CTA() {
   ];
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32 bg-gradient-to-t from-black to-bg-dark border-t border-white/5">
+    <section id="contact" className="relative overflow-hidden py-24 md:py-32 bg-gradient-to-t from-black to-bg-dark border-t border-white/5">
       {/* Background radial highlight */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,204,1,0.03)_0%,transparent_60%)] pointer-events-none" />
 
@@ -63,7 +63,7 @@ export default function CTA() {
           transition={{ duration: 0.5 }}
           className="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-6"
         >
-          Let's Collaborate
+          LET'S COLLABORATE
         </motion.span>
 
         {/* Huge Bold CTA Heading */}
@@ -72,11 +72,22 @@ export default function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase tracking-tight leading-[1.1] mb-10 text-white"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[1.1] mb-6 text-white"
         >
-          Let's build something <br />
-          <span className="text-accent font-brier ">great together.</span>
+          Your next campaign. <br />
+          <span className="text-accent font-sans">F_block_14 audience.</span>
         </motion.h2>
+
+        {/* Subtext */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="text-white/60 text-sm sm:text-base font-sans max-w-lg mb-10"
+        >
+          Tell us about your brand and let's build content that gets seen — and remembered.
+        </motion.p>
 
         {/* Primary Action Button */}
         <motion.div
@@ -88,9 +99,9 @@ export default function CTA() {
         >
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-3 bg-white text-bg-dark hover:bg-accent font-bold text-sm tracking-widest uppercase px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 active:scale-98 shadow-lg shadow-white/5"
+            className="group inline-flex items-center gap-3 bg-accent text-bg-dark hover:bg-white font-bold text-xs tracking-widest uppercase px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 active:scale-98 shadow-lg shadow-accent/5"
           >
-            Contact Now
+            Start a Collaboration
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </motion.div>
