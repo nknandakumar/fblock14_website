@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Sparkles } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import HoverNavLink from "@/components/HoverNavLink";
 
 interface ReelItem {
   id: number;
@@ -301,6 +302,17 @@ export default function Collaborations() {
               </motion.div>
             )}
           </AnimatePresence>
+        </div>
+
+        {/* View More Button below Reels Grid */}
+        <div className="mt-12 flex justify-center">
+          <ScrollReveal delay={0.1}>
+            <HoverNavLink 
+              href="https://instagram.com/f_block_14" 
+              text="View More" 
+              isButton 
+            />
+          </ScrollReveal>
         </div>
 
         {/* Ribbon Header divider */}

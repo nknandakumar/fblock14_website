@@ -153,53 +153,42 @@ export default function Hero() {
 
           {/* Interactive Middle Showcase Reels Marquee (Between CTA Buttons and Franklin Image) */}
           {loaderFinished && (
-            <div className="w-full flex flex-col items-center gap-6 py-2 select-none relative max-w-3xl">
-              <motion.div
-                variants={itemVariants}
-                className="w-full overflow-hidden relative"
-              >
-                {/* Fade out edges */}
-                <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-bg-dark to-transparent z-10 pointer-events-none" />
-                <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-bg-dark to-transparent z-10 pointer-events-none" />
+            <motion.div
+              variants={itemVariants}
+              className="w-full py-4 select-none relative max-w-3xl overflow-hidden"
+            >
+              {/* Fade out edges */}
+              <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-bg-dark to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-bg-dark to-transparent z-10 pointer-events-none" />
 
-                <div className="flex animate-marquee gap-5 w-max items-center will-change-transform py-2">
-                  {marqueeAssets.map((asset, idx) => (
-                    <div
-                      key={`showcase-asset-${idx}`}
-                      className="w-24 sm:w-32 aspect-[9/16] relative rounded-xl overflow-hidden bg-neutral-950 border border-white/10 flex-shrink-0 shadow-md transition-all duration-300 hover:scale-105 hover:border-accent/40 cursor-pointer"
-                    >
-                      {asset.type === "video" ? (
-                        <video
-                          src={asset.url}
-                          loop
-                          muted
-                          playsInline
-                          autoPlay
-                          preload="metadata"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <img
-                          src={asset.url}
-                          alt="Franklin Collaboration"
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* View More Button below Reels */}
-              <motion.div variants={itemVariants} className="pt-1">
-                <HoverNavLink 
-                  href="https://instagram.com/f_block_14" 
-                  text="View More" 
-                  isButton 
-                />
-              </motion.div>
-            </div>
+              <div className="flex animate-marquee gap-5 w-max items-center will-change-transform py-2">
+                {marqueeAssets.map((asset, idx) => (
+                  <div
+                    key={`showcase-asset-${idx}`}
+                    className="w-24 sm:w-32 aspect-[9/16] relative rounded-xl overflow-hidden bg-neutral-950 border border-white/10 flex-shrink-0 shadow-md transition-all duration-300 hover:scale-105 hover:border-accent/40 cursor-pointer"
+                  >
+                    {asset.type === "video" ? (
+                      <video
+                        src={asset.url}
+                        loop
+                        muted
+                        playsInline
+                        autoPlay
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <img
+                        src={asset.url}
+                        alt="Franklin Collaboration"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           )}
 
           {/* 5 & 6. Franklin Image & Floating Achievement Pills */}
