@@ -106,8 +106,8 @@ export default function RootLayout({
         "image": "https://fblock14.com/logo.webp",
         "description": "Premium digital content creator, brand collaborator, and founder of Hidden Hand Media.",
         "sameAs": [
-          "https://instagram.com/f_block_14",
-          "https://youtube.com/@f_block_14",
+          "https://www.instagram.com/f_block_14/",
+          "https://www.youtube.com/@f_block_14"
         ],
         "jobTitle": "Founder & Creative Director",
         "worksFor": {
@@ -123,7 +123,7 @@ export default function RootLayout({
         "url": "https://fblock14.com",
         "logo": "https://fblock14.com/logo.webp",
         "sameAs": [
-          "https://instagram.com/f_block_14"
+          "https://www.instagram.com/f_block_14/"
         ]
       },
       {

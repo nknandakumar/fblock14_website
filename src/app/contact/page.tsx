@@ -11,17 +11,17 @@ export const metadata: Metadata = {
 
 export default function Contact() {
   const contactDetails = {
-    phone: "+1 (234) 567-890",
-    phoneUrl: "tel:+1234567890",
-    email: "franklin@fblock14.com",
-    emailUrl: "mailto:franklin@fblock14.com",
-    whatsapp: "Message on WhatsApp",
-    whatsappUrl: "https://wa.me/1234567890",
-    hours: "Mon - Fri: 9:00 AM - 6:00 PM EST",
+    phone: "+91 63632 17857",
+    phoneUrl: "tel:+916363217857",
+    email: "franklinfrank.smg@gmail.com",
+    emailUrl: "mailto:franklinfrank.smg@gmail.com",
+    whatsapp: "+91 63632 17857",
+    whatsappUrl: "https://wa.me/916363217857",
+    hours: "Mon - Sat: 10:00 AM - 7:00 PM IST",
     instagram: "@f_block_14",
-    instagramUrl: "https://instagram.com/f_block_14",
+    instagramUrl: "https://www.instagram.com/f_block_14/",
     youtube: "Franklin F_BLOCK_14",
-    youtubeUrl: "https://youtube.com/@f_block_14",
+    youtubeUrl: "https://www.youtube.com/@f_block_14",
   };
 
   return (
