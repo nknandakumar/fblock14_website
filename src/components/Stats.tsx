@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Play, Sparkles, Calendar } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 interface CounterProps {
   value: number;
@@ -67,7 +68,7 @@ export default function Stats() {
       description: "across 200+ pieces of content",
     },
     {
-      title: "Brand Collaborations",
+      title: "Sponosred Promotion",
       value: 100,
       suffix: "+",
       icon: <Sparkles className="w-5 h-5 text-accent" />,
@@ -85,50 +86,56 @@ export default function Stats() {
   return (
     <section id="metrics" className="py-20 bg-bg-dark border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-6">
+        {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16 gap-4">
-          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
-            Authority in Numbers
-          </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-white font-sans">
-            Proven Market Traction
-          </h2>
-          <p className="text-white/50 text-sm md:text-lg font-sans max-w-xl mx-auto">
-            Franklin delivers attention and conversion metrics that help premium brands stand out.
-          </p>
+          <ScrollReveal delay={0}>
+            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
+              Authority in Numbers
+            </span>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <h2 className="text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-white font-sans">
+              Proven DIGITAL REACH
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <p className="text-white/50 text-sm md:text-lg font-sans max-w-xl mx-auto">
+              F_block_14 delivers attention and conversion metrics that help premium brands stand out.
+            </p>
+          </ScrollReveal>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {statsData.map((stat, idx) => (
-            <motion.div
+            <ScrollReveal
               key={stat.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -5, borderColor: "rgba(255, 204, 1, 0.4)" }}
-              className="bg-card-dark border border-white/5 p-6 rounded-2xl flex flex-col justify-between h-48 transition-all duration-300 relative group overflow-hidden"
+              delay={idx * 0.08}
+              yOffset={30}
+              className="h-full"
             >
-              {/* Radial gradient hover accent */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,204,1,0.02)_0%,transparent_50%)] pointer-events-none" />
+              <div className="bg-card-dark border border-white/5 p-6 rounded-2xl flex flex-col justify-between h-48 transition-all duration-300 relative group overflow-hidden hover:-translate-y-1 hover:border-accent/30 shadow-md">
+                {/* Radial gradient hover accent */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,204,1,0.02)_0%,transparent_50%)] pointer-events-none" />
 
-              <div className="flex justify-between items-start">
-                <span className="text-xs uppercase font-bold text-white/50 tracking-wider max-w-[70%]">
-                  {stat.title}
-                </span>
-                <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  {stat.icon}
+                <div className="flex justify-between items-start">
+                  <span className="text-xs uppercase font-bold text-white/50 tracking-wider max-w-[70%]">
+                    {stat.title}
+                  </span>
+                  <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    {stat.icon}
+                  </div>
+                </div>
+
+                <div className="space-y-1 mt-auto">
+                  <div className="text-4xl font-black tracking-tight text-white">
+                    <Counter value={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <p className="text-[10px] text-white/40 font-sans mt-2">
+                    {stat.description}
+                  </p>
                 </div>
               </div>
-
-              <div className="space-y-1 mt-auto">
-                <div className="text-4xl font-black tracking-tight text-white">
-                  <Counter value={stat.value} suffix={stat.suffix} />
-                </div>
-                <p className="text-[10px] text-white/40 font-sans mt-2">
-                  {stat.description}
-                </p>
-              </div>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

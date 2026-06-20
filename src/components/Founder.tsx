@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Founder() {
   return (
@@ -14,11 +15,9 @@ export default function Founder() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column - Founder details (7 cols) */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
+          <ScrollReveal
+            delay={0}
+            yOffset={35}
             className="lg:col-span-7 flex flex-col items-start text-left justify-center gap-4"
           >
             <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
@@ -33,7 +32,7 @@ export default function Founder() {
               <p className="text-white/60 text-sm md:text-lg font-sans leading-relaxed max-w-xl">
                 As the architect of <strong>Hidden Ants Media</strong>, Franklin leads a high-caliber digital agency that specializes in premium social strategy, professional video production, and high-impact digital activations. 
               </p>
-              <p className="text-white/60 text-sm md:text-lg font-brier leading-relaxed max-w-xl">
+              <p className="text-white/60 text-sm md:text-lg font-sans leading-relaxed max-w-xl">
                 Hidden Ants Media manages end-to-end creative production—bridging high-end brand partnerships, creative campaigns, and modern storytelling. Together, they turn digital impressions into loyal community and commercial authority.
               </p>
             </div>
@@ -49,14 +48,12 @@ export default function Founder() {
                 <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Right Column - Agency Logo (5 cols) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <ScrollReveal
+            delay={0.15}
+            yOffset={40}
             className="lg:col-span-5 flex justify-center lg:justify-end items-center"
           >
             <div className="relative w-full aspect-square flex items-center justify-center animate-float">
@@ -67,7 +64,7 @@ export default function Founder() {
                 className="w-full h-full object-contain filter drop-shadow-[0_4px_24px_rgba(255,204,1,0.2)]"
               />
             </div>
-          </motion.div>
+          </ScrollReveal>
 
         </div>
       </div>

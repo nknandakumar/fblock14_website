@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, ArrowUpRight } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
+import ButtonCrossArrow from "./ButtonCrossArrow";
 
 export default function CTA() {
   const socials = [
@@ -56,55 +58,32 @@ export default function CTA() {
 
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10 flex flex-col items-center">
         {/* Subtitle badge */}
-        <motion.span
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-6"
-        >
-          LET'S COLLABORATE
-        </motion.span>
+        <ScrollReveal delay={0}>
+          <span className="text-xs font-bold border border-accent rounded-full p-2 bg-accent/3 uppercase tracking-[0.1em] text-accent mb-6 inline-block">
+            LET'S COLLABORATE
+          </span>
+        </ScrollReveal>
 
         {/* Huge Bold CTA Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[1.1] mb-6 text-white"
-        >
-          Your next campaign. <br />
-          <span className="text-accent font-sans">F_block_14 audience.</span>
-        </motion.h2>
+        <ScrollReveal delay={0.1}>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[1.1] mb-6 text-white">
+           LET'S PROMOTE YOUR <span className="text-accent font-sans">BUSINESS</span>
+          </h2>
+        </ScrollReveal>
 
         {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-white/60 text-sm sm:text-base font-sans max-w-lg mb-10"
-        >
-          Tell us about your brand and let's build content that gets seen — and remembered.
-        </motion.p>
+        <ScrollReveal delay={0.15}>
+          <p className="text-white/60 text-sm sm:text-base font-sans max-w-lg mb-10">
+            Whether you're promoting a business, launching a product, or sharing your story, let's create content that reaches the right audience.
+          </p>
+        </ScrollReveal>
 
         {/* Primary Action Button */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-14"
-        >
-          <Link
-            href="/contact"
-            className="group inline-flex items-center gap-3 bg-accent text-bg-dark hover:bg-white font-bold text-xs tracking-widest uppercase px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 active:scale-98 shadow-lg shadow-accent/5"
-          >
-            Start a Collaboration
-            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-        </motion.div>
+        <ScrollReveal delay={0.2} yOffset={20}>
+          <div className="mb-14 flex justify-center">
+            <ButtonCrossArrow href="/contact" text="Start a Collab" className="md:scale-110" />
+          </div>
+        </ScrollReveal>
 
       </div>
     </section>

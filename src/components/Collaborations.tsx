@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Sparkles } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 interface ReelItem {
   id: number;
@@ -253,15 +254,21 @@ export default function Collaborations() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16 gap-4">
-          <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
-            Creator Portfolio
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">
-            Reels Engineered for Commercial Conversion
-          </h2>
-          <p className="text-white/50 text-sm font-sans max-w-md mx-auto">
-            Visual, high-production vertical campaigns optimized for maximum social conversion. Tap on mobile or hover on desktop to play.
-          </p>
+          <ScrollReveal delay={0}>
+            <span className="inline-block text-[10px] font-bold uppercase tracking-[0.25em] text-accent bg-accent/5 border border-accent/20 px-3.5 py-1.5 rounded-full">
+              Creator Portfolio
+            </span>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white">
+              Reels Engineered for Commercial Conversion
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <p className="text-white/50 text-sm font-sans max-w-md mx-auto">
+              Visual, high-production vertical campaigns optimized for maximum social conversion. Tap on mobile or hover on desktop to play.
+            </p>
+          </ScrollReveal>
         </div>
 
         {/* Reels Grid */}
@@ -280,14 +287,16 @@ export default function Collaborations() {
             ) : (
               <motion.div
                 key={activeTab}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
                 className="grid grid-cols-1 sm:grid-cols-3 gap-8"
               >
-                {filteredReels.map((reel) => (
-                  <ReelCard key={reel.id} reel={reel} />
+                {filteredReels.map((reel, idx) => (
+                  <ScrollReveal
+                    key={reel.id}
+                    delay={idx * 0.1}
+                    yOffset={40}
+                  >
+                    <ReelCard reel={reel} />
+                  </ScrollReveal>
                 ))}
               </motion.div>
             )}

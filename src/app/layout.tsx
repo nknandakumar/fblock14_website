@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Mona_Sans, Great_Vibes } from "next/font/google";
+import PageEffects from "@/components/PageEffects";
 import "./globals.css";
 
 const monaSans = Mona_Sans({
@@ -145,7 +146,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-bg-dark text-white font-sans selection:bg-accent selection:text-bg-dark">
-        {children}
+        <PageEffects>
+          {children}
+        </PageEffects>
       </body>
     </html>
   );
